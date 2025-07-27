@@ -1,52 +1,35 @@
-package com.br.courses.model;
+package com.br.courses.dto.student;
 
+import com.br.courses.model.Address;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.*;
 
 import java.util.Date;
 
-@Entity
-@Table(name = "Students")
-public class Student {
+public class StudentResponse {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date birthDate;
-    @ManyToOne
     private Address address;
-    @ManyToOne
-    @JoinColumn(name = "course_id")
-    private Course course;
+    private RegisteredCourseDto course;
     private Boolean active;
 
-    public Student(String name, Date birthDate, Address address) {
+    public StudentResponse(Long id, String name, Date birthDate, Address address, RegisteredCourseDto course, Boolean active) {
+        this.id = id;
         this.name = name;
         this.birthDate = birthDate;
         this.address = address;
-        this.active = true;
+        this.course = course;
+        this.active = active;
     }
-
-    public Student() {}
 
     public Boolean getActive() {
         return active;
     }
 
-    public void setActive() {
-        this.active = !getActive();
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public Long getId() {
@@ -73,11 +56,19 @@ public class Student {
         this.birthDate = birthDate;
     }
 
-    public Course getCourse() {
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public RegisteredCourseDto getCourse() {
         return course;
     }
 
-    public void setCourse(Course course) {
+    public void setCourse(RegisteredCourseDto course) {
         this.course = course;
     }
 }

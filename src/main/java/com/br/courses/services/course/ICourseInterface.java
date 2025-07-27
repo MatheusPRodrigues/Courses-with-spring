@@ -2,15 +2,17 @@ package com.br.courses.services.course;
 
 import com.br.courses.dto.course.CourseDto;
 import com.br.courses.dto.course.CourseResponseDto;
-
-import java.util.List;
+import com.br.courses.model.Response;
 
 public interface ICourseInterface {
 
-    CourseResponseDto registerCourse(CourseDto courseDto);
-    CourseResponseDto modifyCourse(Long id, CourseDto courseDto);
-    List<CourseResponseDto> findAllCourse();
-    CourseResponseDto findById(Long id);
-    void deleteCourse(Long id);
+    Response<CourseResponseDto> registerCourse(CourseDto courseDto);
+    Response<CourseResponseDto> modifyCourse(Long id, CourseDto courseDto);
+    Response<CourseResponseDto> findAllCourse();
+    Response<CourseResponseDto> findById(Long id);
+    Response<Void> inactiveCourse(Long id);
+    Response<CourseResponseDto> getAllInactiveCourses();
+    Response<CourseResponseDto> activeCourse(Long id);
+    Response<Void> deleteCourse(Long id);
 
 }

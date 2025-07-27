@@ -25,15 +25,25 @@ public class Course {
     //private List<String> disciplines;
     @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
     private List<Student> students;
+    private Boolean active;
 
     public Course(String name, Long courseLoad, Date completionDate) {
         this.name = name;
         this.courseLoad = courseLoad;
         this.completionDate = completionDate;
         this.students = new ArrayList<>();
+        this.active = true;
     }
 
     public Course(){}
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive() {
+        this.active = !getActive();
+    }
 
     public Long getId() {
         return id;

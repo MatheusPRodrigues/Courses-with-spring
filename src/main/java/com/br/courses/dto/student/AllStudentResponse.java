@@ -1,23 +1,32 @@
 package com.br.courses.dto.student;
 
-import com.br.courses.model.Course;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
-public class StudentResponseDto {
+public class AllStudentResponse {
 
     private Long id;
     private String name;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date birthDate;
     private RegisteredCourseDto course;
+    private Boolean active;
 
-    public StudentResponseDto(Long id, String name, Date birthDate, RegisteredCourseDto course) {
+    public AllStudentResponse(Long id, String name, Date birthDate, RegisteredCourseDto course, Boolean active) {
         this.id = id;
         this.name = name;
         this.birthDate = birthDate;
         this.course = course;
+        this.active = active;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public Long getId() {
